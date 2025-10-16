@@ -20,11 +20,16 @@ include 'includes/header.php';
 include 'includes/navigation.php';
 #header("Location: events.php");
 
-$reservados = "SELECT rooms.*, COUNT(reservations.id) AS reservation_count
-        FROM rooms
-        LEFT JOIN hotel_db.reservations ON rooms.id = reservations.rooms_id
-        WHERE rooms.usuario_id = {$userID}
-        GROUP BY rooms.id";
+$reservados = "SELECT 
+                    r.*, 
+                    COUNT(CASE WHEN res.aprovacao IN ('pendente', 'aprovado') THEN res.id END) AS reservation_count
+               FROM 
+                    rooms r
+                    LEFT JOIN reservations res ON r.id = res.rooms_id
+               WHERE 
+                    r.usuario_id = {$userID}
+               GROUP BY 
+                    r.id";
 
 $result = $db->query($reservados);
 

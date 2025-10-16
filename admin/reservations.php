@@ -40,7 +40,7 @@ if (isset($_GET['whatsapp'])) {
   $result = $db->query($sql);
 
   if ($result && $result->num_rows > 0) {
-    $row = mysqli_fetch_assoc($result);
+    $row = $result->fetch_assoc();
     
     // Calcula a diferença de dias entre o Check-in e o Check-out
     $checkin = new DateTime($row['checkin']);
@@ -223,7 +223,7 @@ td.telefone {
         </tr>
       </thead>
       <tbody>
-        <?php while ($rows = mysqli_fetch_assoc($result)) :
+        <?php while ($rows = $result->fetch_assoc()) :
           $rooms_id = $rows['rooms_id'];
 
           $roomQuery = "SELECT rm.room_number FROM reservations AS rs
@@ -234,7 +234,7 @@ td.telefone {
 
           // Verifique se a consulta foi bem-sucedida
           if ($roomResult && $roomResult->num_rows > 0) {
-          $roomRow = mysqli_fetch_assoc($roomResult);
+          $roomRow = $roomResult->fetch_assoc();
           $room_number = $roomRow['room_number'];
           } else {
           $room_number = 'N/A';

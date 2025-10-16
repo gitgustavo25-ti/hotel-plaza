@@ -1,98 +1,93 @@
-# SISTEMA DE GERENCIAMENTO DE HOST FAMILY PARA CELÍACOS
+# Hotel Plaza - Sistema de Gerenciamento de Hospedagens
 
-Este projeto foi desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) para a obtenção do título de Tecnólogo em Análise e Desenvolvimento de Sistemas pela Faculdade de Tecnologia de Jundiaí - "Deputado Ary Fossen", sob a orientação da Professora Me. Ângela Cristina de Oliveira Lühmann.
+Este projeto foi desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) em Gestão da Tecnologia da Informação pelo Instituto Federal do Sudeste de Minas Gerais (Polo Muriaé-MG), sob a orientação do Professor Paulo Vinícius.
 
-## Integrantes
+## Criador
 
-- [Higor Bernardes da Silva](https://github.com/higorber)
-- [Myrelle Sales Santos](https://github.com/myrellesales)
-- [Victor De Almeida e Silva](https://github.com/victoralmeida891)
-- [Whitney Gomes Santos De Sousa](https://github.com/whitgomes) 
+- **Gustavo Menezes** - [GitHub](https://github.com/gitgustavo25-ti/)
+
+---
 
 ## Sobre o Projeto
 
-O Sistema de Gerenciamento de Host Family para Celíacos foi desenvolvido com o objetivo de proporcionar uma plataforma segura e eficiente para pessoas celíacas (portadoras da doença celíaca), permitindo que elas encontrem hospedagens com opções alimentares adequadas às suas necessidades, sem riscos de contaminação cruzada. Além disso, o sistema oferece uma interface amigável para anfitriões que desejam disponibilizar suas propriedades e gerenciar reservas, tudo isso em conformidade com as exigências alimentares rigorosas dos celíacos.
+O **Hotel Plaza** é uma plataforma web desenvolvida para simplificar a conexão entre hóspedes e anfitriões. O sistema oferece uma interface amigável para anfitriões que desejam disponibilizar suas propriedades e gerenciar reservas, e para hóspedes que buscam encontrar a hospedagem ideal para suas necessidades.
 
-Este sistema visa garantir que os hóspedes celíacos possam se hospedar de maneira segura, sem a preocupação com a ingestão acidental de glúten, ao mesmo tempo em que oferece aos anfitriões uma maneira simples e eficaz de gerenciar suas hospedagens e reservas.
+## Funcionalidades Principais
 
-## Funcionalidades
-
-O sistema conta com funcionalidades como:
-
-- Cadastro de anfitriões e hóspedes
-- Gerenciamento de hospedagens
-- Busca de hospedagens específicas para celíacos
-- Gerenciamento de reservas e disponibilidade
-- Filtros para garantir opções seguras, sem glúten
+- 👤 **Cadastro de Usuários:** Perfis separados para Anfitriões e Hóspedes.
+- 🏨 **Gerenciamento de Hospedagens:** Anfitriões podem cadastrar, editar e remover suas propriedades.
+- 🔍 **Busca e Filtro:** Hóspedes podem pesquisar e filtrar por hospedagens disponíveis.
+- 📅 **Sistema de Reservas:** Fluxo completo de solicitação, aprovação/recusa e gerenciamento de reservas.
+- 📱 **Notificação via WhatsApp:** Após a aprovação da reserva, o sistema facilita o contato via WhatsApp para finalização.
 
 ## Tecnologias Utilizadas
 
-- **PHP** para o desenvolvimento da aplicação web
-- **MySQL** para o gerenciamento do banco de dados
-- **HTML/CSS/JavaScript** para a construção da interface do usuário
+- **Backend:** PHP 8
+- **Banco de Dados:** MySQL
+- **Frontend:** HTML, CSS, JavaScript
+- **Frameworks/Bibliotecas:** Bootstrap, jQuery, PHPMailer
 
-## Instruções de Instalação e Configuração
+---
 
-### 1. Instalar o XAMPP
+## Guia de Instalação Local
 
-Para rodar o sistema localmente, você precisará instalar o **XAMPP**, que inclui o servidor Apache (para rodar o sistema web) e o MySQL (para gerenciar o banco de dados).
+Siga os passos abaixo para rodar o projeto em seu computador.
 
-- Baixe o XAMPP em: [https://www.apachefriends.org/download.html](https://www.apachefriends.org/download.html)
-- Após o download, execute o instalador e siga os passos de instalação.
-- Depois de instalado, abra o **Painel de Controle do XAMPP** e inicie os módulos **Apache** e **MySQL**.
+### Pré-requisitos
 
-### 2. Criar Banco de Dados no phpMyAdmin
+Antes de começar, garanta que você tenha os seguintes softwares instalados:
+- **XAMPP:** (ou outro ambiente que forneça Apache, PHP e MySQL). [Download aqui](https://www.apachefriends.org/download.html).
+- **Composer:** Gerenciador de dependências para PHP. [Download aqui](https://getcomposer.org/).
+- **Git:** Sistema de controle de versão. [Download aqui](https://git-scm.com/).
 
-Após a instalação do XAMPP, siga os passos abaixo para configurar o banco de dados:
+### Passos da Instalação
 
-1. Abra o navegador e acesse `http://localhost/phpmyadmin/`.
-2. Crie um banco de dados chamado `hotel_bd`.
-3. Importe o arquivo `hotel_bd.sql` (este arquivo deve estar disponível para você) para o banco de dados criado, clicando em "Importar" e selecionando o arquivo `.sql` no seu computador.
+1.  **Inicie os Serviços:**
+    - Abra o Painel de Controle do XAMPP e inicie os módulos **Apache** e **MySQL**.
 
-### 3. Configuração do Sistema
+2.  **Clone o Repositório:**
+    - Navegue até a pasta `htdocs` do seu XAMPP (geralmente `C:\xampp\htdocs`) e clone o projeto:
+      ```bash
+      cd C:\xampp\htdocs
+      git clone https://github.com/gitgustavo25-ti/ht.git
+      ```
+    - Isso criará uma pasta chamada `ht` com todos os arquivos do projeto.
 
-Após configurar o XAMPP e o banco de dados, siga os passos abaixo para acessar o sistema e fazer as configurações necessárias:
+3.  **Instale as Dependências:**
+    - Pelo terminal, entre na pasta do projeto e rode o Composer para instalar as bibliotecas (como o PHPMailer):
+      ```bash
+      cd C:\xampp\htdocs\ht
+      composer install
+      ```
 
-1. **Acesso ao Sistema:**
-   - Abra o navegador e acesse o sistema através de `http://localhost/ht/`.
-   
-2. **Cadastro de Usuários:**
-   - O sistema possui um sistema de cadastro para **Anfitriões** e **Hóspedes**. 
-   - O **Anfitrião** pode cadastrar, gerenciar e visualizar as hospedagens e as reservas.
-   - O **Hóspede** pode fazer reservas nas hospedagens cadastradas pelo Anfitrião.
+4.  **Crie e Importe o Banco de Dados:**
+    - Abra seu navegador e acesse `http://localhost/phpmyadmin/`.
+    - Crie um novo banco de dados chamado `hotel_db`.
+    - Selecione o banco `hotel_db`, vá na aba "Importar" e envie o arquivo `hotel_db.sql` que está na pasta `bd` do projeto.
 
-3. **Gerenciamento de Hospedagens:**
-   - O **Anfitrião** pode cadastrar novas **hospedagens** e gerenciar informações relacionadas, como preços, disponibilidade e outras configurações.
-   
-4. **Reserva pelo Hóspede:**
-   - O **Hóspede** pode visualizar as hospedagens disponíveis e realizar uma **reserva**.
-   - Após a reserva ser realizada, o **Anfitrião** será notificado para confirmar ou recusar a reserva.
+5.  **Acesse o Sistema:**
+    - Tudo pronto! Abra seu navegador e acesse:
+      ```
+      http://localhost/ht/
+      ```
 
-5. **Confirmação de Reserva:**
-   - Após o **Anfitrião** confirmar a reserva, o Hóspede será redirecionado para o **WhatsApp** para concluir o pagamento e outros detalhes relacionados à estadia.
+---
 
-6. **Consideração sobre Dieta para Celíacos:**
-   - No cadastro de cada hospedagem, o **Anfitrião** pode informar se o local oferece opções para **celíacos** (sem glúten). Isso permite que Hóspedes com restrições alimentares possam fazer uma escolha mais informada sobre onde se hospedar.
+## Como Usar o Sistema
 
-## Como Usar
+O sistema possui dois tipos principais de usuários:
 
-Para rodar o sistema localmente, siga as etapas abaixo:
+#### Anfitrião
+-   Pode se cadastrar através da página de cadastro de anfitrião.
+-   Após o login, tem acesso a um painel para **cadastrar**, **editar** e **visualizar** suas hospedagens.
+-   Recebe e gerencia as **solicitações de reserva** feitas por hóspedes, podendo aprová-las ou recusá-las.
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/higorber/ht.git
-   ```
-2. Configure seu banco de dados MySQL de acordo com as instruções do projeto.
-3. Abra o arquivo `index.php` no navegador e comece a utilizar o sistema!
-
-## Agradecimentos
-
-Este trabalho é dedicado aos professores, colegas de curso, e aos nossos familiares, que foram fundamentais durante a jornada acadêmica. Agradecemos também a todos que contribuíram direta ou indiretamente para o sucesso deste projeto.
-
-## Conclusão
-
-Este trabalho de TCC contribui para a criação de um ambiente mais seguro e inclusivo para pessoas celíacas, oferecendo uma solução tecnológica inovadora para o gerenciamento de hospedagens. O projeto está em constante evolução, com planos para melhorias e novos recursos que atenderão às necessidades de um público cada vez mais exigente em termos de segurança alimentar e experiência de hospedagem.
+#### Hóspede
+-   Pode se cadastrar através da página de cadastro de hóspede.
+-   Pode navegar pelas hospedagens disponíveis.
+-   Após o login, pode realizar uma **reserva** em uma hospedagem, preenchendo as datas e a quantidade de pessoas.
+-   Gerencia suas próprias reservas e recebe a notificação de aprovação.
 
 ## Contato
 
-Se tiver dúvidas ou sugestões, entre em contato com: [higor.silva35@fatec.sp.gov.br](mailto:higor.silva35@fatec.sp.gov.br), [myrelle.santos@fatec.sp.gov.br](mailto:myrelle.santos@fatec.sp.gov.br), [victor.silva225@fatec.sp.gov.br](mailto:victor.silva225@fatec.sp.gov.br), [whitney.sousa@fatec.sp.gov.br](mailto:whitney.sousa@fatec.sp.gov.br).
+Se tiver dúvidas ou sugestões, entre em contato: **gitgustavo25@gmail.com**

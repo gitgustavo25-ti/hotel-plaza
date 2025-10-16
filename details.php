@@ -45,10 +45,12 @@ if (isset($_GET['room'])) {
 
         $people = $_POST['people'];
 
-        $r_number = mysqli_fetch_assoc($select);
-        $r = $r_number['room_number'];
+        // CORREÇÃO: Busca os dados da hospedagem novamente para a validação
+        // CORREÇÃO: Busca os dados da hospedagem novamente para a validação
+        $roomValidationQuery = $db->query("SELECT room_number, host FROM rooms WHERE id = '{$roomID}'");
+        $r_number = $roomValidationQuery->fetch_assoc();
         $host = $r_number['host'];
-
+        $r = $r_number['room_number'];
         if (!empty($_POST['in_date']) && !empty($_POST['out_date']) && !empty($_POST['people'])) {
 
 
@@ -67,8 +69,11 @@ if (isset($_GET['room'])) {
             } elseif (strtotime($checkout) < strtotime($checkin)) {
                 echo '<p style="margin-top:19px"  class="w3-red w3-center">Data inválida fornecida. Evite usar uma data checkout maior  .</p>';
             } elseif ($people > $host) {
-                echo '<p style="margin-top:19px" class="w3-red w3-center">Número de hóspedes informado é maior do que o permitido.</p>';
-            } else {
+                echo '<p style="margin-top:19px" class="w3-red w3-center">
+                        Número de hóspedes informado é maior do que o permitido.
+                    </p>';
+                exit; // <-- impede a continuação e o INSERT no banco
+            }else {
             // --- INÍCIO DA CORREÇÃO ---
             // VERIFICAÇÃO CORRETA: Procura por qualquer reserva que se sobreponha às datas desejadas
             $checkAvailabilityQuery = $db->query("SELECT * FROM reservations WHERE rooms_id = '{$roomID}' AND aprovacao IN ('aprovado', 'pendente') AND ('{$checkin}' < checkout AND '{$checkout}' > checkin)");
@@ -118,6 +123,7 @@ if (isset($_GET['room'])) {
                 if ($save) {
                     // Outras operações, se houver
                     header("Location: admin/reservations.php");
+                    exit;
                 }
 
                 echo "<br /> <br />";
@@ -199,7 +205,8 @@ if (isset($_GET['room'])) {
 
                 <div class="col">
                     <label class="form-control-label">Quantidade de hóspedes:</label>
-                    <input type="number" class="form-control" name="people" min="1">
+                    <input type="number" class="form-control" name="people" min="1" max="<?= $room['host']; ?>">
+
                 </div>
 
                 <div class="col-md-12">
