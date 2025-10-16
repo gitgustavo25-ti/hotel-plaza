@@ -37,6 +37,8 @@ if (isset($_GET['room'])) {
         $checkin = $_POST['in_date'];
         $checkout = $_POST['out_date'];
 
+        $name = $_POST['name'];
+
         $selectReservation = $db->query("SELECT * FROM reservations WHERE rooms_id = '{$roomID}' and checkout between '{$checkin}' and '{$checkout}'");
         $selectPermission = $db->query("SELECT permissions FROM users WHERE id = '{$userID}' ");
         $permissionData = mysqli_fetch_assoc($selectPermission);
@@ -66,10 +68,14 @@ if (isset($_GET['room'])) {
                 echo '<p style="margin-top:19px"  class="w3-red w3-center">Data inválida fornecida. Evite usar uma data checkout maior  .</p>';
             } elseif ($people > $host) {
                 echo '<p style="margin-top:19px" class="w3-red w3-center">Número de hóspedes informado é maior do que o permitido.</p>';
-            } elseif (mysqli_num_rows($selectReservation) > 0) {
+            } else {
+            // --- INÍCIO DA CORREÇÃO ---
+            // VERIFICAÇÃO CORRETA: Procura por qualquer reserva que se sobreponha às datas desejadas
+            $checkAvailabilityQuery = $db->query("SELECT * FROM reservations WHERE rooms_id = '{$roomID}' AND aprovacao IN ('aprovado', 'pendente') AND ('{$checkin}' < checkout AND '{$checkout}' > checkin)");
+
+            if ($checkAvailabilityQuery->num_rows > 0) {
                 echo '<p style="margin-top:19px" class="w3-red w3-center">Já existem reservas para este quarto no período selecionado.</p>';
-            } else 
-            {
+            } else {
                 $roomsID = $roomID;
                 $aprovacao = $_POST['aprovacao'];
                 $price = $_POST['price'];
@@ -115,8 +121,8 @@ if (isset($_GET['room'])) {
                 }
 
                 echo "<br /> <br />";
-            }
-
+                }
+            }    
         } else {
             echo '<p style="margin-top:19px" class="w3-red w3-center">Preencha todos os dados!</p>';
         }

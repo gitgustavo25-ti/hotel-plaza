@@ -28,40 +28,56 @@
 
       </div>
 
-      <ul class="nav navbar-nav collapse navbar-collapse" id="Navigation" style="text-align: center;margin-top:15px">
+<ul class="nav navbar-nav collapse navbar-collapse" id="Navigation" style="text-align: center;margin-top:15px">
+    
+    <?php // Links que aparecem se o usuário for um HÓSPEDE ?>
+    <?php if (hospede()) : ?>
         
-        <?php if (hospede()) : ?>
+        <li>
+            <a class="w3-text-white" href="reservations.php">
+                <img src="../img/icon2.png" alt="Ícone de Reservas" width="20" height="20" style="vertical-align: 3px;"> Reservas
+            </a>
+        </li>
+        
+        <?php // AQUI ESTÁ A ADIÇÃO QUE VOCÊ PEDIU ?>
+        <li>
+            <a class="w3-text-white" href="../rooms.php">
+                <img src="../img/icon1.png" alt="Ícone de Hospedagens" width="20" height="20" style="vertical-align: 3px;"> Hospedagens
+            </a>
+        </li>
 
-            
-          <li><a class="w3-text-white" href="reservations.php">
-             <img src="../img/icon2.png" alt="Ícone de Reservas" width="20" height="20" style="vertical-align: 3px;"> Reservas
-          </a></li>
-        <?php endif; ?>
-        <?php if (permission()) : ?>
-          <li><a class="w3-text-white" href="rooms.php">
-             <img src="../img/icon1.png" alt="Ícone de Hospedagens" width="20" height="20" style="vertical-align: 3px;"> Hospedagens
-          </a></li>
+    <?php endif; ?>
+    
+    <?php // Links que aparecem se o usuário for um ANFITRIÃO (admin) ?>
+    <?php if (permission()) : ?>
+        
+        <li>
+            <a class="w3-text-white" href="rooms.php">
+                <img src="../img/icon1.png" alt="Ícone de Hospedagens" width="20" height="20" style="vertical-align: 3px;"> Gerenciar
+            </a>
+        </li>
 
-          <li><a class="w3-text-white" href="solicitacoes.php">
-             <img src="../img/icon2.png" alt="Ícone de Solicitações" width="20" height="20" style="vertical-align: 3px;"> Solicitações
-          </a></li>
+        <li>
+            <a class="w3-text-white" href="solicitacoes.php">
+                <img src="../img/icon2.png" alt="Ícone de Solicitações" width="20" height="20" style="vertical-align: 3px;"> Solicitações
+            </a>
+        </li>
+        
+    <?php endif; ?>
 
-  
-          
-        <?php endif; ?>
-        <!-- <li><a class="w3-text-white" href="videos.php">Videos</a></li> -->
-        <!-- <?php if (hospede()) : ?>
-          <li> <a class="w3-text-white" href="users.php" class=" w3-hover-red"><span class="glyphicon glyphicon-user"></span> Usuários</a> </li>
-        <?php endif; ?> -->
+    <?php // Links que aparecem para TODOS os usuários logados ?>
+    <li>
+        <a class="w3-text-white" href="../index.php">
+            <img src="../img/icon3.png" alt="Ícone de Início" width="22" height="22" style="vertical-align: 3px;"> Início
+        </a>
+    </li>
+    <li>
+        <a class="w3-text-white" href="logout.php">
+            <img src="../img/icon4.png" alt="Ícone de Logout" width="20" height="20" style="vertical-align: 3px;"> Logout
+        </a>
+    </li>
 
-<li><a class="w3-text-white" href="../index.php" class="w3-text-white w3-hover-red">
-    <img src="../img/icon3.png" alt="Ícone de Início" width="22" height="22" style="vertical-align: 3px;"> Início
-</a></li>
-<li><a class="w3-text-white" href="logout.php">
-    <img src="../img/icon4.png" alt="Ícone de Logout" width="20" height="20" style="vertical-align: 3px;"> Logout
-</a></li>
-
-      </ul>
+</ul>
 
       <ul class="nav navbar-nav">
 

@@ -36,10 +36,10 @@ if (isset($_SESSION['logged_in'])) {
     unset($_SESSION['logged_in']);
 }
 
-if (isset($_SESSION['tour_success'])) {
-    echo '<div class="w3-green w3-center">' . $_SESSION['tour_success'] . '</div> ';
-    unset($_SESSION['tour_success']);
-}
+// if (isset($_SESSION['tour_success'])) {
+//     echo '<div class="w3-green w3-center">' . $_SESSION['tour_success'] . '</div> ';
+//     unset($_SESSION['tour_success']);
+// }
 
 if (isset($_SESSION['room_success'])) {
     echo '<div class="w3-green w3-center">' . $_SESSION['room_success'] . '</div> ';

@@ -6,7 +6,7 @@ require_once 'core/core.php';
 include 'includes/header.php';
 include 'includes/navigation.php';
 $sql = $db->query("SELECT * FROM rooms LIMIT 4");
-$tourSQL = $db->query("SELECT * FROM tourism LIMIT 4");
+//$tourSQL = $db->query("SELECT * FROM tourism LIMIT 4");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

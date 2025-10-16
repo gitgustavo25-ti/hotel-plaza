@@ -108,7 +108,7 @@ function getApprovalClass($approvalStatus) {
 ?>
 
 <div class="w3-container w3-main" style="margin-left:200px">
-  <header class="w3-container" style="background-color:#343a4a; width:1330px">
+  <header class="w3-container" style="background-color:#343a4a; width:1330px; display: flex; align-items: center;">
     <span class="w3-opennav w3-xlarge w3-hide-large" onclick="w3_open()">☰</span>
     <h2 class="text-center" style="color:#fff">Minhas Reservas</h2>
 
